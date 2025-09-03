@@ -1,0 +1,103 @@
+// script.js
+
+// Form validation
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    
+    if (name && email && message) {
+        alert('Thank you for your message! I will get back to you soon.');
+        document.getElementById('contactForm').reset();
+    } else {
+        alert('Please fill in all fields.');
+    }
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Add animation to skills on scroll
+const skills = document.querySelectorAll('.skill');
+
+function checkScroll() {
+    skills.forEach(skill => {
+        const position = skill.getBoundingClientRect();
+        
+        // If element is in viewport
+        if (position.top < window.innerHeight - 100) {
+            skill.style.opacity = 1;
+            skill.style.transform = 'translateY(0)';
+        }
+    });
+}
+
+// Initialize skills for animation
+document.querySelectorAll('.skill').forEach(skill => {
+    skill.style.opacity = 0;
+    skill.style.transform = 'translateY(50px)';
+    skill.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+});
+
+// Check scroll on load and scroll
+window.addEventListener('load', checkScroll);
+window.addEventListener('scroll', checkScroll);
+
+// Add animation to project cards
+const projects = document.querySelectorAll('.project');
+
+function checkProjectScroll() {
+    projects.forEach(project => {
+        const position = project.getBoundingClientRect();
+        
+        // If element is in viewport
+        if (position.top < window.innerHeight - 100) {
+            project.style.opacity = 1;
+            project.style.transform = 'translateY(0)';
+        }
+    });
+}
+
+// Initialize projects for animation
+document.querySelectorAll('.project').forEach(project => {
+    project.style.opacity = 0;
+    project.style.transform = 'translateY(50px)';
+    project.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+});
+
+// Check scroll for projects
+window.addEventListener('load', checkProjectScroll);
+window.addEventListener('scroll', checkProjectScroll);
+
+// Add subtle animation to floral elements
+const florals = document.querySelectorAll('.floral');
+
+function animateFlorals() {
+    florals.forEach(floral => {
+        // Randomize animation duration and delay for more natural movement
+        const duration = 15 + Math.random() * 10;
+        const delay = Math.random() * 5;
+        
+        floral.style.animation = `float ${duration}s infinite ease-in-out ${delay}s`;
+    });
+}
+
+// Initialize floral animations
+animateFlorals();
